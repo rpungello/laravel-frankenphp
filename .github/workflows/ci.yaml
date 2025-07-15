@@ -39,6 +39,7 @@ jobs:
             type=semver,pattern=php${{ matrix.php }}-{{major}}.{{minor}}
             type=semver,pattern=php${{ matrix.php }}-{{major}}
             type=sha,prefix=php${{ matrix.php }}-
+            type=raw,value=php${{ matrix.php }}
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
