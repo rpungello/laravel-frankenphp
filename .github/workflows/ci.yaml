@@ -1,7 +1,8 @@
 name: Create and publish a Docker image
 
 on:
-  workflow_dispatch:
+  release:
+    types: [released]
 
 env:
   REGISTRY: ghcr.io
@@ -32,9 +33,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=semver,pattern=php${{ matrix.php }}-{{version}}
+            type=semver,pattern=php${{ matrix.php }}-{{major}}.{{minor}}
+            type=semver,pattern=php${{ matrix.php }}-{{major}}
             type=sha
 
       - name: Log in to the Container registry
