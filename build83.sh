@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker buildx build --pull --push --platform=linux/amd64,linux/arm64/v8 --tag rpungello/laravel-franken:8.3 --tag 692057070962.dkr.ecr.us-east-1.amazonaws.com/laravel-franken:8.3 .
