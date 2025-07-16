@@ -1,7 +1,8 @@
 ARG FRANKEN_VERSION=1.2
 ARG PHP_VERSION=8.3
+ARG DEBIAN_VERSION=bookworm
 
-FROM dunglas/frankenphp:${FRANKEN_VERSION}-php${PHP_VERSION}-bookworm
+FROM dunglas/frankenphp:${FRANKEN_VERSION}-php${PHP_VERSION}-${DEBIAN_VERSION}
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY entrypoint.sh /usr/local/bin/docker-php-entrypoint
