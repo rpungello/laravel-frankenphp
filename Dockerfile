@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y npm 7zip \
     opcache \
     pcntl \
     imagick \
-    mongodb \
     pdo_mysql \
     redis \
     zip \
