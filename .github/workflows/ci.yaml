@@ -13,13 +13,6 @@ jobs:
     strategy:
       matrix:
         php: [8.2, 8.3, 8.4]
-        include:
-          - php: 8.2
-            franken: 1.2
-          - php: 8.3
-            franken: 1.2
-          - php: 8.4
-            franken: 1.8
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -62,6 +55,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            FRANKEN_VERSION=${{ matrix.franken }}
+            FRANKEN_VERSION=1
             PHP_VERSION=${{ matrix.php }}
 
