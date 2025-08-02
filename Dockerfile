@@ -5,10 +5,12 @@ ARG DEBIAN_VERSION=bookworm
 FROM dunglas/frankenphp:${FRANKEN_VERSION}-php${PHP_VERSION}-${DEBIAN_VERSION}
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY entrypoint.sh /usr/local/bin/docker-php-entrypoint
+COPY --chmod=0755 entrypoint.sh /usr/local/bin/docker-php-entrypoint
+COPY --chmod=0755 node.sh /root/node.sh
 ENV SERVER_NAME=:80
 
-RUN apt-get update && apt-get install -y npm 7zip \
+RUN /root/node.sh \
+ && apt-get update && apt-get install -y nodejs 7zip \
  && install-php-extensions \
     ftp \
     gd \
@@ -20,4 +22,4 @@ RUN apt-get update && apt-get install -y npm 7zip \
     redis \
     zip \
  && apt-get clean \
- && chmod +x /usr/local/bin/docker-php-entrypoint
+ && rm /root/node.sh
