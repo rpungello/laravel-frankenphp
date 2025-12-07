@@ -21,5 +21,6 @@ RUN /root/node.sh \
     pdo_mysql \
     redis \
     zip \
+    mongodb \
  && apt-get clean \
  && rm /root/node.sh
