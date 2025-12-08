@@ -8,6 +8,7 @@ The following PHP extensions are included
 - gd
 - imagick
 - intl
+- mongodb
 - opcache
 - pdo_mysql
 - redis
