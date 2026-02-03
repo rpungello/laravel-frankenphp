@@ -14,10 +14,6 @@ jobs:
       matrix:
         php: [8.2, 8.3, 8.4, 8.5]
         debian: [bookworm, trixie]
-        node: [22]
-        include:
-          - php: 8.5
-            node: 24
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -51,6 +47,14 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Set Node version
+        run: |
+          if [[ "${{ matrix.php }}" >= "8.5" ]]; then
+            echo "node=24" >> $GITHUB_OUTPUT
+          else
+            echo "node=22" >> $GITHUB_OUTPUT
+          fi
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -61,5 +65,5 @@ jobs:
           build-args: |
             PHP_VERSION=${{ matrix.php }}
             DEBIAN_VERSION=${{ matrix.debian }}
-            NODE_VERSION=${{ matrix.node }}
+            NODE_VERSION=${{ steps.node-version.outputs.node }}
 
