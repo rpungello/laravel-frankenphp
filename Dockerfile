@@ -12,7 +12,7 @@ COPY --chmod=0755 node/setup_${NODE_VERSION}.x /root/node.sh
 ENV SERVER_NAME=:80
 
 RUN /root/node.sh \
- && apt-get update && apt-get install -y nodejs 7zip \
+ && apt-get update && apt-get install -y nodejs unzip 7zip \
  && install-php-extensions \
     ftp \
     gd \
