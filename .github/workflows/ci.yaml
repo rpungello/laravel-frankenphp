@@ -48,8 +48,9 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Set Node version
+        id: node-version
         run: |
-          if [[ "${{ matrix.php }}" -ge "8.5" ]]; then
+          if [ "${{ matrix.php }}" -ge "8.5" ]; then
             echo "node=24" >> $GITHUB_OUTPUT
           else
             echo "node=22" >> $GITHUB_OUTPUT
