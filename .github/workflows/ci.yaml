@@ -14,6 +14,9 @@ jobs:
       matrix:
         php: [8.2, 8.3, 8.4, 8.5]
         debian: [bookworm, trixie]
+        include:
+          - php: 8.5
+            node_version: 24
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -57,4 +60,5 @@ jobs:
           build-args: |
             PHP_VERSION=${{ matrix.php }}
             DEBIAN_VERSION=${{ matrix.debian }}
+            NODE_VERSION=${{ matrix.node_version }}
 
