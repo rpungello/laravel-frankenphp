@@ -1,9 +1,10 @@
 ARG FRANKEN_VERSION=1
 ARG PHP_VERSION=8.3
 ARG DEBIAN_VERSION=trixie
-ARG NODE_VERSION=22
 
 FROM dunglas/frankenphp:${FRANKEN_VERSION}-php${PHP_VERSION}-${DEBIAN_VERSION}
+
+ARG NODE_VERSION=22
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY --chmod=0755 entrypoint.sh /usr/local/bin/docker-php-entrypoint
