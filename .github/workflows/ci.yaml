@@ -50,7 +50,7 @@ jobs:
       - name: Set Node version
         id: node-version
         run: |
-          if [ "${{ matrix.php }}" -ge "8.5" ]; then
+          if (( $(echo "${{ matrix.php }} >= 8.5" | bc -l) )); then
             echo "node=24" >> $GITHUB_OUTPUT
           else
             echo "node=22" >> $GITHUB_OUTPUT
